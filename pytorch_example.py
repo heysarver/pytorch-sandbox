@@ -10,15 +10,30 @@ n_out = 1
 # Batch size
 batch_size = 10
 
+#########
+
 # Create dummy input and target tensors
 x = torch.randn(batch_size, n_in)
 y = torch.tensor([[1.0], [0.0], [0.0], [1.0], [1.0], [1.0], [0.0], [0.0], [1.0], [1.0]])
 
-# Create model
-model = nn.Sequential(nn.Linear(n_in, n_h),
-  nn.ReLU(),
-  nn.Linear(n_h, n_out),
-  nn.Sigmoid())
+#print(x)
+#print(y)
+
+#########
+
+# Create model - https://pytorch.org/docs/stable/generated/torch.nn.Sequential.html
+# https://pytorch.org/docs/stable/generated/torch.nn.Linear.html#torch.nn.Linear 
+# https://pytorch.org/docs/stable/generated/torch.nn.ReLU.html#torch.nn.ReLU
+# https://pytorch.org/docs/stable/generated/torch.nn.Sigmoid.html#torch.nn.Sigmoid
+# https://www.geeksforgeeks.org/linear-transformation-to-incoming-data-in-pytorch/
+model = nn.Sequential(
+          nn.Linear(n_in, n_h),
+          nn.ReLU(),
+          nn.Linear(n_h, n_out),
+          nn.Sigmoid()
+        )
+
+#########
 
 # Construct the loss function
 criterion = torch.nn.MSELoss()
